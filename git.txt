@@ -1,6 +1,15 @@
+basic git command:
+
 git pull -- aggiornare
 git clone https://github.com/Kiwiilock/Project -- ottenere cartella
 git push -- upload files
+git add git.txt -- add a file to the repository
+git checkout -- show differences
+git commit -- commits modified files
 
 
+more info on:
+https://gist.github.com/jtallant/2932800
+
+© by Kevin F. ®
 for more: http://rogerdudler.github.io/git-guide/index.it.html
