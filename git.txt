@@ -1,3 +1,6 @@
 git pull -- aggiornare
 git clone https://github.com/Kiwiilock/Project -- ottenere cartella
 git push -- upload files
+
+
+for more: http://rogerdudler.github.io/git-guide/index.it.html
