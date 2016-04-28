@@ -12,4 +12,8 @@ more info on:
 https://gist.github.com/jtallant/2932800
 
 © by Kevin F. ®
+
+
 for more: http://rogerdudler.github.io/git-guide/index.it.html
+
+© by milo ®
