@@ -7,7 +7,11 @@ git add git.txt -- add a file to the repository
 git checkout -- show differences
 git commit -- commits modified files
 
-
+Standard Workflow
+git pull
+git add nomefile
+git commit -m "messaggio commit"
+git push
 more info on:
 https://gist.github.com/jtallant/2932800
 
