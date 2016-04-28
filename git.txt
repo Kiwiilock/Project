@@ -16,6 +16,8 @@ git push
 more info on:
 https://gist.github.com/jtallant/2932800
 
+To commit: checkout, add, commit, pull. (no questions, just do it)
+
 © by Kevin F. ®
 
 
