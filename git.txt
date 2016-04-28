@@ -10,6 +10,7 @@ git commit -- commits modified files
 Standard Workflow
 git pull
 git add nomefile
+git checkout
 git commit -m "messaggio commit"
 git push
 more info on:
