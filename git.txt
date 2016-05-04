@@ -18,6 +18,10 @@ https://gist.github.com/jtallant/2932800
 
 To commit: checkout, add, commit, pull. (no questions, just do it)
 
+another interface useful to avoid the use of the shell:
+
+https://www.sourcetreeapp.com/
+
 © by Kevin F. ®
 
 
