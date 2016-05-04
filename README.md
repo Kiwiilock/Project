@@ -1,2 +1,4 @@
 # Project
-sa2 hci
+SA2 HCI
+
+Tower Defense style game.
