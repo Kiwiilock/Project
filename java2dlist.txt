@@ -1,1 +1,3 @@
 - Java documentation: https://docs.oracle.com/javase/tutorial/2d/overview/index.html
+
+© by Ilaria Arini ®

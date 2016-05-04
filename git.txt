@@ -27,4 +27,4 @@ https://www.sourcetreeapp.com/
 
 for more: http://rogerdudler.github.io/git-guide/index.it.html
 
-© by milo ®
+© by Milo Wroblewski ®
