@@ -4,7 +4,7 @@ import java.awt.Image;
 public class Healthbar extends Sprite
 {
     private final int INITIAL_X = 400;
-    private int life = 3;
+    private int life = 10;
 
 
     public Healthbar(int x, int y) {
@@ -15,7 +15,7 @@ public class Healthbar extends Sprite
 
     private void initHealthbar() {
 
-        loadImage("green.png");
+        loadImage("res/green.png");
 
         //BufferedImage image = new BufferedImage(this.getX(), this.getY(), BufferedImage.TYPE_INT_RGB);
         //image.setColor(Color.GREEN);
@@ -41,14 +41,14 @@ public class Healthbar extends Sprite
     }
     
     public void setYellow() {
-    loadImage("yellow.png");
+    loadImage("res/yellow.png");
     }
     
     public void setOrange() {
-    loadImage("orange.png");
+    loadImage("res/orange.png");
     }
     
     public void setRed() {
-    loadImage("red.png");
+    loadImage("res/red.png");
     }
 }

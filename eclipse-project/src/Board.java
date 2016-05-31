@@ -116,7 +116,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void loadTowerImage() {
 
-        ImageIcon ii = new ImageIcon("tower.png");
+        ImageIcon ii = new ImageIcon("res/tower.png");
         tower = ii.getImage();        
     }
 
@@ -285,7 +285,9 @@ public class Board extends JPanel implements ActionListener {
     {
         for (int[] p : TowerPos) 
         {
-            if (p[1]==horizontalPos) {return true;}
+            if (p[1]==horizontalPos) {
+            	return true;
+            }
         }
         return false;
     }
