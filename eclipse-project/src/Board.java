@@ -33,8 +33,8 @@ public class Board extends JPanel implements ActionListener {
     private Image tower;
     private boolean ingame;
     private final int B_WIDTH = 1000;
-    private final int B_HEIGHT = 1000;
-    private final int DELAY = 15;
+    private final int B_HEIGHT = 810;
+    private final int DELAY = 5;
 
     ////
 
@@ -42,20 +42,21 @@ public class Board extends JPanel implements ActionListener {
     private final int blocksize = 50;
     private final int scrsize = nrofblocks * blocksize;
     private short[] screendata;
-    private Color mazecolor = new Color(200, 100, 5);
+    private Color mazecolor = new Color(255,102,153);
     ////
 
     private final int[][] AlienPos = {
-            {1600, 200}, {1570, 200}, {1540, 200},
-            {1510, 200}, {1480, 200}, {1450, 200},
-            {1420, 200}, {1390, 200}, {1360, 200},
-            {1330, 200}, {1300, 200}, {1270, 200},
-            {1240, 200}, {1210, 200}, {1080, 200},
-            {1050, 200}, {1020, 200}, {1900, 200},
-            {1870, 200}, {1840, 200}, {1810, 200},
-            {1780, 200}, {1750, 200}, {1720, 200},
-            {1690, 200}, {1660, 200}, {1630, 200}
-        };
+            {3000, 200}, {2950, 200}, {2900, 200},
+            {2850, 200}, {2700, 200}, {2650, 200},
+            {2600, 200}, {2550, 200}, {2500, 200},
+            {2450, 200}, {2400, 200}, {2350, 200},
+            {2300, 200}, {2250, 200}, {2200, 200},
+            {2150, 200}, {2100, 200}, {2050, 200},
+            {2000, 200}, {1550, 200}, {1500, 200},
+            {1450, 200}, {1400, 200}, {1350, 200},
+            {1300, 200}, {1250, 200}, {1200, 200},
+            {1150, 200}, {1100, 200}, {1050, 200}
+            };
 
     private final int[][]TowerPos = {{800, 250}, {650, 100}, {500, 250}, {350, 500}};  
     //private final int[][]TowerPos = {{450, 250}, {300, 50}, {350, 250}, {400, 50}};
@@ -64,28 +65,32 @@ public class Board extends JPanel implements ActionListener {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 3, 10, 10, 10, 10, 10, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 3, 10, 10, 10, 10, 10,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 9, 10, 10, 10, 10, 10, 10, 12, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
         };
 
+    Image bgImage;
+    
+    
     public Board() {
         initBoard();
+        bgImage = Toolkit.getDefaultToolkit().createImage("smileCow.jpg");
     }
 
     private void initBoard() {
@@ -107,7 +112,7 @@ public class Board extends JPanel implements ActionListener {
         for (i = 0; i < nrofblocks * nrofblocks; i++) {
             screendata[i] = gridData[i];
         }
-        //
+        
         initAliens();
 
         timer = new Timer(DELAY, this);
@@ -132,7 +137,8 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        g.drawImage(bgImage, 0, 0, null); //set a background image
+        
         if (ingame) {
             //
             Graphics2D g2d = (Graphics2D) g;
@@ -169,7 +175,7 @@ public class Board extends JPanel implements ActionListener {
         g.setColor(Color.WHITE);
         //g.drawString("Aliens left: " + aliens.size(), 5, 15);
     }
-    //
+    
     private void drawGrid(Graphics2D g2d) {
 
         short i = 0;
@@ -199,22 +205,29 @@ public class Board extends JPanel implements ActionListener {
                         y + blocksize - 1);
                 }
                 
-                /*
-                if ((screendata[i] & 16) != 0) { 
-                    g2d.setColor(dotcolor);
-                    g2d.fillRect(x + 11, y + 11, 2, 2);
-                }
-                */
+                // 5 --> vertical line
+                // 10 --> horizontal line
+                // 3 --> top-left corner
+                // 9 --> bottom-left corner
+                // 12 --> bottom-right corner
+                // 6 --> top-right corner
+                
+                
+//                if ((screendata[i] & 16) != 0) { 
+//                    g2d.setColor(dotcolor);
+//                    g2d.fillRect(x + 11, y + 11, 2, 2);
+//                }
+                
 
                 i++;
             }
         }
     }
-    //
+    
 
     private void drawGameOver(Graphics g) {
 
-        String msg = "Game Over";
+        String msg = "Game Over: you have caused the extinction of cows from planet Earth";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
@@ -252,18 +265,47 @@ public class Board extends JPanel implements ActionListener {
         for (int i = 0; i < aliens.size(); i++) {
 
             Alien a = aliens.get(i);
-
+            boolean discesa = true;
             if (a.isVisible()) {
-                if (a.getX() >= 450)
+                if (a.getX()>700 && a.getY()==200)
                 {
                 a.move();
                 a.getHealthbar().move();
                  }
-                 else
-                 {a.move2();
-                    a.getHealthbar().move2();}
+                if (a.getX()==700){
+                	a.move2();
+                    a.getHealthbar().move2();
+                }
+                if (a.getY()==700 && discesa){
+                	a.move();
+                    a.getHealthbar().move();
+                }
+                if (a.getX()==350 && discesa){
+                	discesa =  false;
+                	a.moveUp();
+                    a.getHealthbar().moveUp();
+                }
+                if (a.getY()==150 && !discesa){
+                	a.move();
+                    a.getHealthbar().move();
+                }
+                if (a.getY()==150 && a.getX()<400){
+                	a.move();
+                    a.getHealthbar().move();
+                }
+                if (a.getX()==50){
+                	discesa = true;
+                	a.move2();
+                    a.getHealthbar().move2();
+                }
+                if (a.getX()==50 && a.getY()>150){
+                	discesa = true;
+                	a.move2();
+                    a.getHealthbar().move2();
+                }
                 
-            } else {
+            } 
+            else {
 
                 aliens.remove(i);
 
@@ -294,7 +336,7 @@ public class Board extends JPanel implements ActionListener {
         for (Alien alien : aliens){
             if (alien.getY() <= 300){
             if (intersectsTowerRange1(alien.getX()))
-            {
+           {
                 alien.hurtAlienBadly();
                 alien.updateHealthbar();
             }
@@ -302,7 +344,7 @@ public class Board extends JPanel implements ActionListener {
             else {
             if (intersectsTowerRange2(alien.getY()))
             {
-                alien.hurtAlienBadly();
+               alien.hurtAlienBadly();
                 alien.updateHealthbar();
             }
             }
@@ -312,4 +354,6 @@ public class Board extends JPanel implements ActionListener {
         }
 
     }
+    
+    
 }
