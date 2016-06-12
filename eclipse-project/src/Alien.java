@@ -38,6 +38,20 @@ public class Alien extends Sprite {
         y += 1;
     }
     
+    public void moveUp(){
+    	
+    	if (x < 0) {
+            x = INITIAL_X;
+        }
+
+        y -= 1;
+    }
+    
+    
+    
+    
+    
+    
     public void hurtAlien() 
     {--life;}
     
