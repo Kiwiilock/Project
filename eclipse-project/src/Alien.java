@@ -38,34 +38,18 @@ public class Alien extends Sprite {
         y += 1;
     }
     
-    public void moveUp(){
-    	
-    	if (x < 0) {
-            x = INITIAL_X;
-        }
-
-        y -= 1;
-    }
-    
-    
-    
-    
-    
-    
     public void hurtAlien() 
     {--life;}
     
     public void hurtAlienBadly() 
     {life-=10;}
     
+    public int getAlienLife()
+    {return life;}
     
-    public int getAlienLife(){
-    return life;}
+    public Healthbar getHealthbar() {return healthbar;}
     
-    public Healthbar getHealthbar(){
-    	return healthbar;
-    }
-    
+   
     public void updateHealthbar() {
      if(life >= 1000){return;}
      else if(life >=700){healthbar.setYellow(); return;}
@@ -73,5 +57,8 @@ public class Alien extends Sprite {
      else if (life >= 100){healthbar.setRed(); return;}
      else{this.setVisible(false);}
     }
+    
+
+    
         
 }
