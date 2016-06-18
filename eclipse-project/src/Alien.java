@@ -6,7 +6,7 @@ public class Alien extends Sprite {
 
     public Alien(int x, int y) {
         super(x, y);
-        life = 12;
+        life = 1200;
 
         initAlien();
         
@@ -56,18 +56,21 @@ public class Alien extends Sprite {
     {--life;}
     
     public void hurtAlienBadly() 
-    {life-=3;}
+    {life-=10;}
     
-    public int getAlienLife()
-    {return life;}
     
-    public Healthbar getHealthbar() {return healthbar;}
+    public int getAlienLife(){
+    return life;}
+    
+    public Healthbar getHealthbar(){
+    	return healthbar;
+    }
     
     public void updateHealthbar() {
-     if(life >= 10){return;}
-     else if(life >=7){healthbar.setYellow(); return;}
-     else if (life >= 4) {healthbar.setOrange(); return;}
-     else if (life >= 1){healthbar.setRed(); return;}
+     if(life >= 1000){return;}
+     else if(life >=700){healthbar.setYellow(); return;}
+     else if (life >= 400) {healthbar.setOrange(); return;}
+     else if (life >= 100){healthbar.setRed(); return;}
      else{this.setVisible(false);}
     }
         

@@ -1,4 +1,10 @@
 import java.awt.Color;
+import java.awt.Button;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -15,7 +21,6 @@ import javax.swing.Timer;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.geom.Rectangle2D;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,12 +34,13 @@ public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
     private ArrayList<Alien> aliens;
-
-    private Image tower;
+    private ArrayList<Tower> towers;
+    //private ArrayList<Bullet> bullets;
+    private Control mouse;
     private boolean ingame;
     private final int B_WIDTH = 1000;
     private final int B_HEIGHT = 810;
-    private final int DELAY = 5;
+    private final int DELAY = 15;
 
     ////
 
@@ -58,7 +64,7 @@ public class Board extends JPanel implements ActionListener {
             {1150, 200}, {1100, 200}, {1050, 200}
             };
 
-    private final int[][]TowerPos = {{800, 250}, {650, 100}, {500, 250}, {350, 500}};  
+    private final int[][]TowerPos = {{475, 350}, {475, 400}, {475, 450}, {475, 500}};  
     //private final int[][]TowerPos = {{450, 250}, {300, 50}, {350, 250}, {400, 50}};
 
     private final short gridData[] = {
@@ -91,14 +97,10 @@ public class Board extends JPanel implements ActionListener {
     public Board() {
         initBoard();
         bgImage = Toolkit.getDefaultToolkit().createImage("smileCow.jpg");
+        addMouseListener(mouse);
     }
 
     private void initBoard() {
-        loadTowerImage();
-        int w = tower.getWidth(this);
-        int h =  tower.getHeight(this);
-        setPreferredSize(new Dimension(w, h));  
-
         setFocusable(true);
         setBackground(Color.BLACK);
         ingame = true;
@@ -113,16 +115,19 @@ public class Board extends JPanel implements ActionListener {
             screendata[i] = gridData[i];
         }
         
+        initTowers();
         initAliens();
-
+        mouse=new Control();
         timer = new Timer(DELAY, this);
         timer.start();
     }
 
-    private void loadTowerImage() {
+    private void initTowers() {
+    	towers = new ArrayList<>();
+    	for (int[] p : TowerPos) {
+            towers.add(new Tower(p[0], p[1]));
 
-        ImageIcon ii = new ImageIcon("tower.png");
-        tower = ii.getImage();        
+        }       
     }
 
     public void initAliens() {
@@ -156,11 +161,19 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawObjects(Graphics g) {
 
-        for (int[] p : TowerPos) {
-            g.drawImage(tower, p[0], p[1], this); 
+        for (Tower t : towers) {
+            g.drawImage(t.getImage(), t.getX(), t.getY(), this);
 
         }
+        
+        /*
+        for (Bullet b : bullets) {
+            g.drawImage(b.getImage(), b.getX(), b.getY(), this); 
 
+        }
+        */
+
+       
         for (Alien a : aliens) {
             if (a.isVisible()) {
                 g.drawImage(a.getImage(), a.getX(), a.getY(), this);
@@ -313,47 +326,41 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    public boolean intersectsTowerRange1(int horizontalPos)
-    {
-        for (int[] p : TowerPos) 
-        {
-            if (p[0]==horizontalPos) {return true;}
-        }
-        return false;
-    }
-    
-    
-    public boolean intersectsTowerRange2(int horizontalPos)
-    {
-        for (int[] p : TowerPos) 
-        {
-            if (p[1]==horizontalPos) {return true;}
-        }
-        return false;
-    }
-
     public void checkCollisions() {  
         for (Alien alien : aliens){
-            if (alien.getY() <= 300){
-            if (intersectsTowerRange1(alien.getX()))
-           {
-                alien.hurtAlienBadly();
-                alien.updateHealthbar();
+            for (Tower tower: towers){   
+                if (tower.intersects(alien.getX(), alien.getY()))
+                {
+                    alien.hurtAlienBadly();
+                    alien.updateHealthbar();
+                }
             }
-            }
-            else {
-            if (intersectsTowerRange2(alien.getY()))
-            {
-               alien.hurtAlienBadly();
-                alien.updateHealthbar();
-            }
-            }
-
             if (alien.getX() ==0)
-            {alien.setVisible(false);}
+            {alien.setVisible(false);}   
         }
-
     }
     
     
+    public class Control implements MouseListener{
+
+        public void mouseClicked (MouseEvent e){
+
+        }
+        public void mouseEntered(MouseEvent e){}
+
+        public void mouseExited(MouseEvent e){}
+
+        public void mousePressed (MouseEvent e) {
+ 
+        }
+
+        public void mouseReleased(MouseEvent e){
+        towers.add(new Tower(e.getX() - 50, e.getY() - 50));
+        }
+
+    }
 }
+        
+        
+        
+        
