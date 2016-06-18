@@ -9,7 +9,7 @@ import java.awt.Image;
 public class Tower extends Sprite
 {
     private final int INITIAL_X = 400;
-    private static final int RANGE = 100;
+    private static final int RANGE = 50;
     
     public Tower(int x, int y) {
         super(x, y);
