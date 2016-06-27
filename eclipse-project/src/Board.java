@@ -96,7 +96,7 @@ public class Board extends JPanel implements ActionListener {
     
     public Board() {
         initBoard();
-        bgImage = Toolkit.getDefaultToolkit().createImage("smileCow.jpg");
+        bgImage = Toolkit.getDefaultToolkit().createImage("BackGroung.jpg");
         addMouseListener(mouse);
     }
 
