@@ -50,7 +50,7 @@ public class zarroTD extends Frame implements ActionListener{ //the main contain
 		setVisible(true);
 		Color bgColor = new Color(255,102,153);//(214,255,141); //choose a RGB background color
 		setBackground(bgColor); //set the chosen color as frame background
-		Image iconImage = Toolkit.getDefaultToolkit().createImage("tower.png"); //choose an icon for the game
+		Image iconImage = Toolkit.getDefaultToolkit().createImage("other/tower.png"); //choose an icon for the game
 		setIconImage(iconImage); //set the icon
 		setResizable(false); //set the frame such that the user can't change its size
 		addWindowListener(new WindowAdapter() { //QUIT the starting GUI when the users clicks the window close button
@@ -62,7 +62,7 @@ public class zarroTD extends Frame implements ActionListener{ //the main contain
 	}
 
 	public Font fontHandler() throws FontFormatException, IOException{ //throw an exception is the chosen font is not found
-		     Font font = Font.createFont(Font.TRUETYPE_FONT, new File("Capture_it.ttf"));
+		     Font font = Font.createFont(Font.TRUETYPE_FONT, new File("other/Capture_it.ttf"));
 		     return font.deriveFont(20f); //derive the font to 20pt
 	}
 
@@ -136,17 +136,17 @@ public class zarroTD extends Frame implements ActionListener{ //the main contain
 	
 	public void imageManager(){
 		try{
-			alien = ImageIO.read(new File("alien.png")); //load an image from file (take external format png and convert into Java2D format BufferedImage
+			alien = ImageIO.read(new File("other/alien.png")); //load an image from file (take external format png and convert into Java2D format BufferedImage
 		}
 		catch(IOException e){}
 		
 		try{
-			alien2 = ImageIO.read(new File("alien2.png")); //load an image from file (take external format png and convert into Java2D format BufferedImage
+			alien2 = ImageIO.read(new File("other/alien2.png")); //load an image from file (take external format png and convert into Java2D format BufferedImage
 		}
 		catch(IOException e){}
 		
 		try{
-			tower = ImageIO.read(new File("tower.png")); //load an image from file (take external format png and convert into Java2D format BufferedImage
+			tower = ImageIO.read(new File("other/tower.png")); //load an image from file (take external format png and convert into Java2D format BufferedImage
 		}
 		catch(IOException e){}
 	}
