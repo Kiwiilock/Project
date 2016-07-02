@@ -29,6 +29,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -150,6 +151,8 @@ public class Board extends JPanel implements ActionListener {
             drawGrid(g2d);
             //
             drawObjects(g);
+            updateTowers(g);
+            
 
         } else {
 
@@ -184,6 +187,9 @@ public class Board extends JPanel implements ActionListener {
 
             }
         }
+        
+        
+        
 
         g.setColor(Color.WHITE);
         //g.drawString("Aliens left: " + aliens.size(), 5, 15);
@@ -254,12 +260,16 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         inGame();
-
+        repaint();
         updateAliens();
+        
 
         checkCollisions();
 
-        repaint();
+       
+        
+        
+        
     }
 
     private void inGame() {
@@ -326,6 +336,25 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
+    public void updateTowers(Graphics g){
+    	for (Tower tower : towers){
+    		double min = 1000000;
+    		Alien minAlien = aliens.get(0);
+    		for (Alien alien : aliens){
+    			if (alien.distance(tower) < min){
+    				min = alien.distance(tower);
+    				minAlien = alien;
+    			}
+    		}
+    		tower.fire(minAlien);
+    		
+    		g.setColor(Color.red);
+    		g.drawLine(tower.getCenterX(), tower.getCenterY(), minAlien.getCenterX(), minAlien.getCenterY());
+    		
+    	}
+    	
+    }
+    
     public void checkCollisions() {  
         for (Alien alien : aliens){
             for (Tower tower: towers){   
@@ -355,7 +384,22 @@ public class Board extends JPanel implements ActionListener {
         }
 
         public void mouseReleased(MouseEvent e){
-        towers.add(new Tower(e.getX() - 50, e.getY() - 50));
+        	
+        	Tower newtower = new Tower(e.getX() - 50, e.getY() - 50);
+        	boolean collision = false;
+        	
+        	for(Tower tower : towers){
+        		if(tower.intersects(newtower.getCenterX(), newtower.getCenterY())){
+        			collision = true;
+        			break;
+        		}
+        	}
+        	
+        	
+        	
+        	if(!collision){
+        		towers.add(newtower);
+        	}
         }
 
     }

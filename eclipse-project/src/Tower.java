@@ -1,5 +1,9 @@
 import java.awt.image.BufferedImage;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.geom.Line2D;
+
+
+
 /**
  * Write a description of class Tower here.
  * 
@@ -8,8 +12,7 @@ import java.awt.Image;
  */
 public class Tower extends Sprite
 {
-    private final int INITIAL_X = 400;
-    private static final int RANGE = 50;
+
     
     public Tower(int x, int y) {
         super(x, y);
@@ -27,11 +30,14 @@ public class Tower extends Sprite
     }
 
         
-    public boolean intersects (int x, int y ) {
-    return    x <= this.getX() + RANGE 
-           && x >= this.getX() - RANGE 
-           && y <= this.getY() + RANGE
-           && y >= this.getY() - RANGE;
+
+    
+    public void fire(Alien a){
+    	
+    	
+    	a.hurtAlien();
+    	a.updateHealthbar();
+    	
     }
 }
 

@@ -10,6 +10,8 @@ public class Sprite {
     protected int height;
     protected boolean visible;
     protected Image image;
+   
+    private static final int RANGE = 50;
 
     public Sprite(int x, int y) {
 
@@ -37,9 +39,17 @@ public class Sprite {
     public int getX() {
         return x;
     }
+    
+    public int getCenterX() {
+        return x+(width/2);
+    }
 
     public int getY() {
         return y;
+    }
+    
+    public int getCenterY() {
+        return y+(height/2);
     }
 
     public boolean isVisible() {
@@ -52,6 +62,17 @@ public class Sprite {
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
+    }
+    
+    public double distance(Sprite s){
+    	return Math.pow (Math.pow((this.getX() - s.getX()), 2) + Math.pow((this.getY() - s.getY()), 2), 0.5);
+    }
+    
+    public boolean intersects (int x, int y ) {
+    return    x <= this.getCenterX() + RANGE 
+           && x >= this.getCenterX() - RANGE 
+           && y <= this.getCenterY() + RANGE
+           && y >= this.getCenterY() - RANGE;
     }
 }
 

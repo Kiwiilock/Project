@@ -1,10 +1,8 @@
-import java.awt.image.BufferedImage;
-import java.awt.Image;
 
 public class Healthbar extends Sprite
 {
     private final int INITIAL_X = 400;
-    private int life = 3;
+ 
 
 
     public Healthbar(int x, int y) {
