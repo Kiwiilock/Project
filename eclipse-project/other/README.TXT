@@ -1,12 +1,11 @@
 ------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
+This is the project README file. This contains the title, the authors and a brief description of the game
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: The Aliens are here!
+
+
+AUTHORS: Ardigò Susanna, Arini Ilaria, Franchi Kevin, Poncioni Yanna, Wroblewski Milo. 
+
+
+DESCRIPTION: This is a Tower Defence game where aliens are trying to reach a City.The only way to stop the invasion is to kill the aliens. To kill aliens place towers on the map. The towers automatically shoot the closes alien. You coins to purchase tower. Towers are placed clicking on the map. To win kill all alines. When too many alines reach the city the game is over.
