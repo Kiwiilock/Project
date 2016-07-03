@@ -42,6 +42,7 @@ public class Board extends JPanel implements ActionListener {
     private final int B_WIDTH = 1000;
     private final int B_HEIGHT = 810;
     private final int DELAY = 15;
+    private static Integer SCORE = 0;
 
     ////
 
@@ -163,6 +164,9 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void drawObjects(Graphics g) {
+    	
+    	String msg = "Score: " + SCORE.toString();
+    	g.drawString(msg, 50, 40);
 
         for (Tower t : towers) {
             g.drawImage(t.getImage(), t.getX(), t.getY(), this);
@@ -246,7 +250,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawGameOver(Graphics g) {
 
-        String msg = "Game Over: you have caused the extinction of cows from planet Earth";
+        String msg = "The aliens took over the World! Your final score is: " + SCORE.toString();
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
@@ -255,6 +259,18 @@ public class Board extends JPanel implements ActionListener {
         g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
             B_HEIGHT / 2);
     }
+    private void drawVictory(Graphics g) {
+
+        String msg = "You stopped the invasion! Your final score is: " + SCORE.toString();
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
+            B_HEIGHT / 2);
+    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -331,6 +347,7 @@ public class Board extends JPanel implements ActionListener {
             else {
 
                 aliens.remove(i);
+                SCORE += 1;
 
             }
         }

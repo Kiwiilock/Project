@@ -46,7 +46,7 @@ public class zarroTD extends Frame implements ActionListener{ //the main contain
 
 	public void frameProperties(){
 		setSize(500, 300);
-		setTitle("The most zarro TOWER DEFENSE GAME in the world");
+		setTitle("The Aliens are here!");
 		setVisible(true);
 		Color bgColor = new Color(255,102,153);//(214,255,141); //choose a RGB background color
 		setBackground(bgColor); //set the chosen color as frame background
