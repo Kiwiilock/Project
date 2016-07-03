@@ -42,6 +42,8 @@ public class Board extends JPanel implements ActionListener {
     private final int B_HEIGHT = 810;
     private final int DELAY = 15;
     private static Integer SCORE = 0;
+    private static Integer COINS = 10;
+    private static Integer ALIENS_PASSED = 0;
 
     ////
 
@@ -155,7 +157,7 @@ public class Board extends JPanel implements ActionListener {
 
         } else {
 
-            drawGameOver(g);
+            drawVictory(g);
         }
 
         Toolkit.getDefaultToolkit().sync();
@@ -163,8 +165,13 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawObjects(Graphics g) {
     	
+    	g.setColor(Color.white);
     	String msg = "Score: " + SCORE.toString();
-    	g.drawString(msg, 50, 40);
+    	g.drawString(msg, 50, 14);
+    	String  msg2 = "You have " + COINS.toString() + " coins.";
+    	g.drawString(msg2,  50,  29);
+    	String msg3 = "Aliens that reached the city: " + ALIENS_PASSED;
+    	g.drawString(msg3, 50, 44);
 
         for (Tower t : towers) {
             g.drawImage(t.getImage(), t.getX(), t.getY(), this);
@@ -248,11 +255,8 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawGameOver(Graphics g) {
 
-<<<<<<< HEAD
+
         String msg = "The aliens took over the World! Your final score is: " + SCORE.toString();
-=======
-        String msg = "Game Over: you have caused the extinction of aliens from planet Earth";
->>>>>>> c2e9c530755d9a4476bebd2e151f353224c73fc3
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
@@ -276,19 +280,12 @@ public class Board extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        inGame();
-        repaint();
-        updateAliens();
-        
-
-        checkCollisions();
-
-       
-        
-        
-        
-    }
+    	inGame();
+    	repaint();
+    	updateAliens();
+    	checkCollisions();
+    	
+    	}
 
     private void inGame() {
 
@@ -347,9 +344,17 @@ public class Board extends JPanel implements ActionListener {
                 
             } 
             else {
+            	
+            	if (a.getX()<10) {
+            		aliens.remove(i);
+            		
+            	}
+            	else {
 
                 aliens.remove(i);
                 SCORE += 1;
+                COINS += 5;
+            	}
 
             }
         }
@@ -384,7 +389,10 @@ public class Board extends JPanel implements ActionListener {
                 }
             }
             if (alien.getX() ==0)
-            {alien.setVisible(false);}   
+            	{
+            		alien.setVisible(false);
+            		ALIENS_PASSED += 1;
+            	}   
         }
     }
     
@@ -404,25 +412,33 @@ public class Board extends JPanel implements ActionListener {
 
         public void mouseReleased(MouseEvent e){
         	
-        	Tower newtower = new Tower(e.getX() - 50, e.getY() - 50);
-        	boolean collision = false;
+        	if (COINS >= 5) {
+        		COINS -= 5;
+        		Tower newtower = new Tower(e.getX() - 50, e.getY() - 50);
+        		boolean collision = false;
         	
-        	for(Tower tower : towers){
-        		if(tower.intersects(newtower.getCenterX(), newtower.getCenterY())){
-        			collision = true;
-        			break;
+        		for(Tower tower : towers){
+        			if(tower.intersects(newtower.getCenterX(), newtower.getCenterY())){
+        				collision = true;
+        				break;
+        			}
         		}
+        	
+        	
+        	
+        	
+        		if(!collision){
+        			towers.add(newtower);
         	}
-        	
-        	
-        	
-        	if(!collision){
-        		towers.add(newtower);
         	}
         }
-
     }
 }
+
+        
+
+    
+
         
         
         
