@@ -156,9 +156,13 @@ public class Board extends JPanel implements ActionListener {
             
 
         } else {
-
-            drawVictory(g);
-        }
+        	if (ALIENS_PASSED > 3) {
+        		drawGameOver(g);
+        		}
+        	else {
+        		drawVictory(g);
+        	}
+        	}
 
         Toolkit.getDefaultToolkit().sync();
     }
