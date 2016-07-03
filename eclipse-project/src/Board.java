@@ -42,7 +42,7 @@ public class Board extends JPanel implements ActionListener {
     private final int B_HEIGHT = 810;
     private final int DELAY = 15;
     private static Integer SCORE = 0;
-    private static Integer COINS = 10;
+    private static Integer COINS = 5;
     private static Integer ALIENS_PASSED = 0;
 
     ////
@@ -311,16 +311,16 @@ public class Board extends JPanel implements ActionListener {
             if (a.isVisible()) {
                 if (a.getX()>700 && a.getY()==200)
                 {
-                a.move();
-                a.getHealthbar().move();
+                a.moveLeft();
+                a.getHealthbar().moveLeft();
                  }
                 if (a.getX()==700){
-                	a.move2();
-                    a.getHealthbar().move2();
+                	a.moveDown();
+                    a.getHealthbar().moveDown();
                 }
-                if (a.getY()==700 && discesa){
-                	a.move();
-                    a.getHealthbar().move();
+                if (a.getY()==700 && discesa && a.getX()>50){
+                	a.moveLeft();
+                    a.getHealthbar().moveLeft();
                 }
                 if (a.getX()==350 && discesa){
                 	discesa =  false;
@@ -328,22 +328,22 @@ public class Board extends JPanel implements ActionListener {
                     a.getHealthbar().moveUp();
                 }
                 if (a.getY()==150 && !discesa){
-                	a.move();
-                    a.getHealthbar().move();
+                	a.moveLeft();
+                    a.getHealthbar().moveLeft();
                 }
-                if (a.getY()==150 && a.getX()<400){
-                	a.move();
-                    a.getHealthbar().move();
+                if (a.getX()<400 && a.getY()==150){
+                	a.moveLeft();
+                    a.getHealthbar().moveLeft();
                 }
                 if (a.getX()==50){
                 	discesa = true;
-                	a.move2();
-                    a.getHealthbar().move2();
+                	a.moveDown();
+                    a.getHealthbar().moveDown();
                 }
                 if (a.getX()==50 && a.getY()>150){
                 	discesa = true;
-                	a.move2();
-                    a.getHealthbar().move2();
+                	a.moveDown();
+                    a.getHealthbar().moveDown();
                 }
                 
             } 
@@ -369,16 +369,16 @@ public class Board extends JPanel implements ActionListener {
     		double min = 1000000;
     		Alien minAlien = aliens.get(0);
     		for (Alien alien : aliens){
-    			if (alien.distance(tower) < min){
-    				min = alien.distance(tower);
+    			if (tower.distance(alien) < min){
+    				min = tower.distance(alien);
     				minAlien = alien;
     			}
     		}
     		tower.fire(minAlien);
-    		
+    		if (minAlien.getX()<975 && minAlien.getY()<775){
     		g.setColor(Color.lightGray);
     		g.drawLine(tower.getCenterX(), tower.getCenterY(), minAlien.getCenterX(), minAlien.getCenterY());
-    		
+    		}
     	}
     	
     }
@@ -392,7 +392,7 @@ public class Board extends JPanel implements ActionListener {
                     alien.updateHealthbar();
                 }
             }
-            if (alien.getX() ==0)
+            if (alien.getY()>775)
             	{
             		alien.setVisible(false);
             		ALIENS_PASSED += 1;
@@ -416,13 +416,12 @@ public class Board extends JPanel implements ActionListener {
 
         public void mouseReleased(MouseEvent e){
         	
-        	if (COINS >= 5) {
-        		COINS -= 5;
+
         		Tower newtower = new Tower(e.getX() - 50, e.getY() - 50);
         		boolean collision = false;
         	
         		for(Tower tower : towers){
-        			if(tower.intersects(newtower.getCenterX(), newtower.getCenterY())){
+        			if(tower.intersects(newtower.getCenterX(), newtower.getCenterY()) || newtower.getCenterY()<100	|| COINS<5){
         				collision = true;
         				break;
         			}
@@ -433,9 +432,9 @@ public class Board extends JPanel implements ActionListener {
         	
         		if(!collision){
         			towers.add(newtower);
+        			COINS -= 5;
         	}
         	}
-        }
     }
 }
 

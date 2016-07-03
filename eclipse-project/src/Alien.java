@@ -19,7 +19,7 @@ public class Alien extends Sprite {
         getImageDimensions();
     }
 
-    public void move() {
+    public void moveLeft() {
 
         if (x < 0) {
             x = INITIAL_X;
@@ -28,7 +28,7 @@ public class Alien extends Sprite {
         x -= 1;
     }
     
-    public void move2() {
+    public void moveDown() {
 
         if (x < 0) {
             x = INITIAL_X;
