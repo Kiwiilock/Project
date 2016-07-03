@@ -349,7 +349,7 @@ public class Board extends JPanel implements ActionListener {
             } 
             else {
             	
-            	if (a.getX()<10) {
+            	if (a.getY()>775) {
             		aliens.remove(i);
             		
             	}
@@ -392,7 +392,7 @@ public class Board extends JPanel implements ActionListener {
                     alien.updateHealthbar();
                 }
             }
-            if (alien.getY()>775)
+            if (alien.getY() > 775)
             	{
             		alien.setVisible(false);
             		ALIENS_PASSED += 1;
