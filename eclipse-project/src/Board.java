@@ -36,7 +36,6 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private ArrayList<Alien> aliens;
     private ArrayList<Tower> towers;
-    //private ArrayList<Bullet> bullets;
     private Control mouse;
     private boolean ingame;
     private final int B_WIDTH = 1000;
@@ -66,30 +65,29 @@ public class Board extends JPanel implements ActionListener {
             {1150, 200}, {1100, 200}, {1050, 200}
             };
 
-    private final int[][]TowerPos = {{475, 350}, {475, 400}, {475, 450}, {475, 500}};  
-    //private final int[][]TowerPos = {{450, 250}, {300, 50}, {350, 250}, {400, 50}};
+    private final int[][]TowerPos = {{500, 120}, {200, 300}, {880, 500}};  
 
     private final short gridData[] = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 3, 10, 10, 10, 10, 10, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 3, 10, 10, 10, 10, 10,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 9, 10, 10, 10, 10, 10, 10, 12, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
         };
 
@@ -98,7 +96,7 @@ public class Board extends JPanel implements ActionListener {
     
     public Board() {
         initBoard();
-        bgImage = Toolkit.getDefaultToolkit().createImage("BackGroung.jpg");
+        bgImage = Toolkit.getDefaultToolkit().createImage("other/BackGroung.jpg");
         addMouseListener(mouse);
     }
 
@@ -250,7 +248,11 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawGameOver(Graphics g) {
 
+<<<<<<< HEAD
         String msg = "The aliens took over the World! Your final score is: " + SCORE.toString();
+=======
+        String msg = "Game Over: you have caused the extinction of aliens from planet Earth";
+>>>>>>> c2e9c530755d9a4476bebd2e151f353224c73fc3
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
@@ -365,7 +367,7 @@ public class Board extends JPanel implements ActionListener {
     		}
     		tower.fire(minAlien);
     		
-    		g.setColor(Color.red);
+    		g.setColor(Color.lightGray);
     		g.drawLine(tower.getCenterX(), tower.getCenterY(), minAlien.getCenterX(), minAlien.getCenterY());
     		
     	}

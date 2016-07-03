@@ -24,8 +24,7 @@ public class Tower extends Sprite
 
     private void initTower() {
 
-        loadImage("tower.png");
-        //loadImage("green.png");
+        loadImage("other/tower.png");
         getImageDimensions();
     }
 

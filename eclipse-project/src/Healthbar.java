@@ -13,10 +13,8 @@ public class Healthbar extends Sprite
 
     private void initHealthbar() {
 
-        loadImage("green.png");
+        loadImage("other/green.png");
 
-        //BufferedImage image = new BufferedImage(this.getX(), this.getY(), BufferedImage.TYPE_INT_RGB);
-        //image.setColor(Color.GREEN);
         getImageDimensions();
     }
 
@@ -53,14 +51,14 @@ public class Healthbar extends Sprite
     
     
     public void setYellow() {
-    loadImage("yellow.png");
+    loadImage("other/yellow.png");
     }
     
     public void setOrange() {
-    loadImage("orange.png");
+    loadImage("other/orange.png");
     }
     
     public void setRed() {
-    loadImage("red.png");
+    loadImage("other/red.png");
     }
 }
